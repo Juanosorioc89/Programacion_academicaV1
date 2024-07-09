@@ -28,7 +28,7 @@
             <label for="id_faculty" class="form-label">Faculty</label>
             <select name="id_faculty" id="id_faculty" class="form-control">
                 @foreach($faculties as $faculty)
-                    <option value="{{ $faculty->id }}">{{ $faculty->name_program }}</option>
+                    <option value="{{ $faculty->id }}" {{ $faculty->id == $program->id_faculty ? 'selected' : '' }}>{{ $faculty->name_program }}</option>
                 @endforeach
             </select>
         </div>
@@ -36,7 +36,7 @@
             <label for="id_program_type" class="form-label">Program Type</label>
             <select name="id_program_type" id="id_program_type" class="form-control">
                 @foreach($programTypes as $programType)
-                    <option value="{{ $programType->id }}">{{ $programType->name_program_type }}</option>
+                    <option value="{{ $programType->id }}" {{ $programType->id == $program->id_program_type ? 'selected' : '' }}>{{ $programType->name_program_type }}</option>
                 @endforeach
             </select>
         </div>

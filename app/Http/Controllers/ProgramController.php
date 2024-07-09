@@ -49,17 +49,23 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        return view('dashboard.program');
+        //dd($program->id); 
+        // Utiliza el método `findOrFail` para obtener el programa por su ID
+        $program = Program::with('faculty', 'programType')->findOrFail($program->id);
+
+        // Devuelve la vista `show` con los datos del programa
+        return view('dashboard.program.show', compact('program'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Program $program)
+    public function edit($id)
     {
         $faculties = Faculties::all();
         $programType = ProgramType::all();
-        return view('dashboard.program.edit',['faculties'=>$faculties, 'programTypes'=>$programType]);
+        $program=Program::find($id);
+        return view('dashboard.program.edit',['faculties'=>$faculties, 'programTypes'=>$programType,'program'=>$program ]);
     }
 
     /**
@@ -81,7 +87,7 @@ class ProgramController extends Controller
             'program_code' => $request->program_code,
         ]);
 
-        return redirect()->route('programs.index')->with('success', 'Program updated successfully.');
+        return redirect()->route('program.index')->with('success', 'Program updated successfully.');
     }
 
     /**
@@ -91,6 +97,6 @@ class ProgramController extends Controller
     {
         $program = Program::find($id);
         $program->delete();
-        return view('dashboard.program');
+        return redirect("dashboard/program");
     }
 }

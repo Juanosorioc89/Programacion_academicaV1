@@ -12,7 +12,7 @@ class ProgramTypesSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
         // Insertar los datos en la tabla
         DB::table('program_types')->insert([

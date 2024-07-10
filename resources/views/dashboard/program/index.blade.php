@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 <div class="container mt-5">
-    <a href="{{ url('dashboard/program/create')}}">Nuevo programa</a>
-    <table class="table table-striped">
+    <a href="{{ url('dashboard/program/create')}}" class="btn btn-primary">Nuevo programa</a>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID</th>

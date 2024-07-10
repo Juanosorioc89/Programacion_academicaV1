@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('personal_email', 100)->notnull;
             $table->string('institutional_email', 100)->notnull;
             $table->string('adress', 100)->notnull;
-            $table->string('phone number', 100)->notnull;
+            $table->string('phone_number', 100)->notnull;
             $table->string('number_mobile', 100)->notnull;
             $table->boolean('diplom', 100)->notnull;
             $table->unsignedBigInteger('id_vinculation_type');
             $table->timestamps();
-            $table->foreign('id_vinculation_type')->references('id')->on('vinculation_types')->onDelete('cascade');
+            $table->foreign('id_vinculation_type')->references('id')->on('type_vinculations')->onDelete('cascade');
         });
     }
 

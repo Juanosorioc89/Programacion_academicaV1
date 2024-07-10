@@ -1,7 +1,9 @@
-@extends('dashboard.master')
-@section('titulo','Programa')
-@include('layouts/navigation')
-@section('contenido')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Listado de Programas') }}
+        </h2>
+    </x-slot>
 <div class="container mt-5">
     <h1 class="mb-4">Editar Programa</h1>
     @if($errors->any())
@@ -47,4 +49,4 @@
         </div>
     </form>
 </div>
-@endsection
+</x-app-layout>

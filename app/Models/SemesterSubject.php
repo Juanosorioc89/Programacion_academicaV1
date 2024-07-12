@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SemesterSubject extends Model
 {
     use HasFactory;
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'id_curriculum_semester');
+    }
 }

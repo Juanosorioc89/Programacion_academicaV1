@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\SubjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     //Rutas de la Aplicacion
     Route::resource('dashboard/program', ProgramController::class);
     Route::resource('dashboard/teacher', TeacherController::class);
+    Route::resource('dashboard/subject', SubjectController::class);
 });
 
 require __DIR__.'/auth.php';

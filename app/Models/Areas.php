@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Areas extends Model
 {
     use HasFactory;
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'id_area');
+    }
 }

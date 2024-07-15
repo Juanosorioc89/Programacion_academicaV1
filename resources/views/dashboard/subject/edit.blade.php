@@ -15,30 +15,34 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('subject.update', $subject->id) }}" method="post">
+    <form action="{{ route('subject.update', $subject->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
             <label for="subject_name" class="form-label">Nombre Asignatura</label>
-            <input type="text" name="subject_name" id="subject_name" class="form-control" value="{{ $subject->subject_name }}">
+            <input type="text" name="name_subject" id="name_subject" class="form-control" value="{{ $subject->name_subject }}">
+        </div>
+        <div class="mb-3">
+            <label for="subject_credit" class="form-label">Créditos Asignatura</label>
+            <input type="text" name="subject_credit" id="subject_credit" class="form-control" value="{{ $subject->subject_credit }}">
         </div>
         <div class="mb-3">
             <label for="subject_code" class="form-label">Código Asigntaura</label>
-            <input type="text" name="subject_code" id="subject_code" class="form-control" value="{{ $program->subject_code }}">
+            <input type="text" name="subject_code" id="subject_code" class="form-control" value="{{ $subject->subject_code }}">
         </div>
         <div class="mb-3">
             <label for="id_area" class="form-label">Area</label>
             <select name="id_area" id="id_area" class="form-control">
-                @foreach($areas as $area)
-                    <option value="{{ $area->id }}" {{ $area->id == $subject->id_area ? 'selected' : '' }}>{{ $area->name_area }}</option>
+                @foreach($area as $area)
+                    <option value="{{ $area->id }}" {{ $area->id == $subject->id_area ? 'selected' : '' }}>{{ $area->description_area }}</option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
             <label for="id_curriculum_semester" class="form-label">Numero de semestres</label>
             <select name="id_curriculum_semester" id="id_curriculum_semester" class="form-control">
-                @foreach($curriculumSemester as $curriculumSemesters)
-                    <option value="{{ $curriculumSemester->id }}" {{ $curriculumSemester->id == $subject->id_curriculum_semester ? 'selected' : '' }}>{{ $curriculumSemester->semester_number }}</option>
+                @foreach($curriculumSemester as $curriculumSemester)
+                    <option value="{{ $curriculumSemester->id }}" {{ $curriculumSemester->id == $subject->curriculumSemester->id ? 'selected' : '' }}>{{ $curriculumSemester->semester_number }}</option>
                 @endforeach
             </select>
         </div>

@@ -23,15 +23,15 @@
                 @foreach($subjects as $subject)
                 <tr>
                     <td>{{ $subject->id }}</td>
-                    <td>{{ $subject->subject_name }}</td>
-                    <td>{{ $subject->subject_credits }}</td>
+                    <td>{{ $subject->name_subject }}</td>
+                    <td>{{ $subject->subject_credit }}</td>
                     <td>{{ $subject->curriculumSemester->semester_number }}</td>
+                    <td>{{ $subject->subject_code }}</td> 
                     <td>{{ $subject->area->description_area }}</td>
-                    <td>{{ $subject->subject_code }}</td>                
                     <td>
                         <a href="{{ route('subject.show', $subject->id) }}" class="btn btn-info btn-sm">Detalle</a>
                         <a href="{{ route('subject.edit', $subject->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                        <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST" style="display:inline-block;">
+                        <form action="{{ route('subject.destroy', $subject->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este profesor?')">Eliminar</button>

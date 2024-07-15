@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('subject_name', 100)->notnull;
-            $table->string('subject_credits', 100)->notnull;
+            $table->string('name_subject', 100)->notnull;
+            $table->string('subject_credit', 100)->notnull;
             $table->unsignedBigInteger('id_curriculum_semester');
             $table->unsignedBigInteger('id_area');
             $table->string('subject_code', 100)->notnull;

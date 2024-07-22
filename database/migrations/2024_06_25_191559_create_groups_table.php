@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('group_code', 100)->notnull;
-            $table->unsignedBigInteger('id_subject');
+            $table->unsignedBigInteger('id_semester_subject');
             $table->unsignedBigInteger('id_teacher');
-            $table->date('date')->nullable;
             $table->timestamps();
-            $table->foreign('id_subject')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('id_semester_subject')->references('id')->on('semester_subjects')->onDelete('cascade');
             $table->foreign('id_teacher')->references('id')->on('teachers')->onDelete('cascade');
-
         });
     }
 

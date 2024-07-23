@@ -31,7 +31,7 @@
                     <td>
                         <a href="{{ route('subject.show', $subject->id) }}" class="btn btn-info btn-sm">Detalle</a>
                         <a href="{{ route('subject.edit', $subject->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                        <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST" style="display:inline-block;">
+                        <form action="{{ route('subject.destroy', $subject->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este profesor?')">Eliminar</button>

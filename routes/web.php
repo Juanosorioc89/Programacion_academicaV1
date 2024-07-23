@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\SemesterSubjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('dashboard/program', ProgramController::class);
     Route::resource('dashboard/teacher', TeacherController::class);
     Route::resource('dashboard/subject', SubjectController::class);
+    Route::resource('dashboard/semesterSubject', SemesterSubjectController::class);
 });
 
 require __DIR__.'/auth.php';

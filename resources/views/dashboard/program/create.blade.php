@@ -39,7 +39,6 @@
                 @endforeach
             </select>
         </div>
-        
         <div class="mb-3">
             <button type="submit" class="btn btn-success">Registrar</button>
             <a href="{{url('dashboard/program')}}" class="btn btn-secondary">Regresar</a>

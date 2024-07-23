@@ -9,8 +9,19 @@ class SemesterSubject extends Model
 {
     use HasFactory;
 
-    public function subjects()
+    protected $fillable = [
+        'id_subject',
+        'id_block',
+        'students_number',
+    ];
+
+    public function subject()
     {
-        return $this->hasMany(Subject::class, 'id_curriculum_semester');
+        return $this->belongsTo(Subjects::class, 'id_subject', 'id');
+    }
+
+    public function block()
+    {
+        return $this->belongsTo(Blocks::class, 'id_block', 'id');
     }
 }

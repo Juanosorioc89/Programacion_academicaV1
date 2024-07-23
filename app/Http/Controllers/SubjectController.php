@@ -63,7 +63,7 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        $area = Area::all();
+        $area = Areas::all();
         $curriculumSemester = CurriculumSemester::all();
         $subject=Subject::find($id);
         return view('dashboard.subject.edit',['area'=>$area, 'curriculumSemester'=>$curriculumSemester,'subject'=>$subject ]);
@@ -72,24 +72,18 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'id_area' => 'required|exists:area,id',
-            'id_curriculum_semester' => 'required|exists:semester_number,id',
-            'subject_name' => 'required|max:100',
-            'subject_credits' => 'required|max:100',
+            'id_area' => 'required|exists:areas,id',
+            'id_curriculum_semester' => 'required|exists:curriculum_semesters,id',
+            'name_subject' => 'required|max:100',
+            'subject_credit' => 'required|max:100',
             'subject_code' => 'required|max:100',
 
         ]);
-
-        $subject->update([
-            'id_area' => $request->id_area,
-            'id_curriculum_semester' => $request->id_curriculum_semester,
-            'subject_name' => $request->subject_name,
-            'subject_credits' => $request->subject_credits,
-            'subject_code' => $request->subject_code,
-        ]);
+        $subject = Subject::findOrFail($id);
+        $subject->update($request->all());
 
         return redirect()->route('subject.index')->with('success', 'Subject updated successfully.');
     }

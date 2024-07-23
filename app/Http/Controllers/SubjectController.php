@@ -36,8 +36,8 @@ class SubjectController extends Controller
     {
         
         $subject=new subject();
-        $subject->subject_name=$request->input('subject_name');
-        $subject->subject_credits=$request->input('subjects_credit');
+        $subject->name_subject=$request->input('name_subject');
+        $subject->subject_credit=$request->input('subject_credit');
         $subject->id_curriculum_semester=$request->input('id_curriculum_semester');
         $subject->id_area=$request->input('id_area');
         $subject->subject_code=$request->input('subject_code');

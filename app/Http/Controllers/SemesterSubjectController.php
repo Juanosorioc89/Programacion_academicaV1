@@ -34,10 +34,10 @@ class SemesterSubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $semestersSubject=SemesterSubject::all();
+        $semestersSubject= new SemesterSubject();
         $semestersSubject->id_subject=$request->input('id_subject');
         $semestersSubject->id_block=$request->input('id_block');
-        $semestersSubject->number_students=$request->input('students_number');
+        $semestersSubject->students_number=$request->input('students_number');
         $semestersSubject->save();
         return redirect()->route('semesterSubject.index')->with('success', 'Program created successfully.');
     }

@@ -19,23 +19,23 @@
             @csrf
             <div class="mb-3">
                 <label for="id_subject" class="form-label">subject</label>
-                <select name="subject" id="subject" class="form-control">
+                <select name="id_subject" id="id_subject" class="form-control">
                     @foreach($subject as $subject)
-                        <option value="{{ $subject->id }}">{{ $subject->subject_name }}</option>
+                        <option value="{{ $subject->id }}">{{ $subject->name_subject }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label for="id_block" class="form-label">bloque</label>
-                <select name="block" id="block" class="form-control">
+                <select name="id_block" id="id_block" class="form-control">
                     @foreach($block as $block)
                         <option value="{{ $block->id }}">{{ $block->description }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label for="name">Cantidad de Estudiantes</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+            <div class="mb-3">
+                <label for="students_number" class="form-label">Código Asignatura</label>
+                <input type="text" name="students_number" id="students_number" class="form-control" value="{{ old('students_number') }}">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Guardar</button>
         </form>

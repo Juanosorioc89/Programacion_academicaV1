@@ -18,12 +18,12 @@
         <form action="{{ route('subject.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="subject_name" class="form-label">Nombre Asignatura</label>
-                <input type="text" name="subject_name" id="subject_name" class="form-control" value="{{ old('subject_name') }}">
+                <label for="name_subject" class="form-label">Nombre Asignatura</label>
+                <input type="text" name="name_subject" id="name_subject" class="form-control" value="{{ old('name_subject') }}">
             </div>
             <div class="mb-3">
                 <label for="subject_credit" class="form-label">Créditos Asignatura</label>
-                <input type="text" name="subject_credit" id="subject_credit" class="form-control" value="{{ old('subject_credits') }}">
+                <input type="text" name="subject_credit" id="subject_credit" class="form-control" value="{{ old('subject_credit') }}">
             </div>
             <div class="mb-3">
                 <label for="subject_code" class="form-label">Código Asignatura</label>

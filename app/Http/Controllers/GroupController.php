@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
+use App\Models\Projection;
+use App\Models\CurriculumSemester;
+use App\Models\SemesterSubject;
 use App\Models\Group;
+use App\Models\Teacher;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 
 class GroupController extends Controller
 {
@@ -13,7 +20,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::with('semesterSubject', 'teacher')->paginate(10);
+        $programs = Program::all(); // Agregar la obtención de los programas
+        return view('dashboard.group.index', compact('groups', 'programs'));
     }
 
     /**
@@ -21,7 +30,9 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $programs = Program::all();
+        $teachers = Teacher::all();
+        return view('dashboard.group.create', compact('programs', 'teachers'));
     }
 
     /**
@@ -62,5 +73,41 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         //
+    }
+    public function autoGenerate(Request $request)
+    {
+        $request->validate([
+            'program_id' => 'required|exists:programs,id',
+            'year' => 'required|integer',
+            'academic_semester' => 'required|integer',
+        ]);
+
+        $programId = $request->input('program_id');
+        $year = $request->input('year');
+        $academicSemester = $request->input('academic_semester');
+
+        $projections = Projection::whereHas('curriculum', function ($query) use ($programId) {
+            $query->where('id_academic_program', $programId);
+        })->where('year', $year)->where('academic_semester', $academicSemester)->get();
+
+        foreach ($projections as $projection) {
+            $semesterSubjects = SemesterSubject::where('id_curriculum', $projection->curriculum_id)->get();
+
+            foreach ($semesterSubjects as $semesterSubject) {
+                $studentsPerGroup = 40;
+                $totalStudents = $projection->projected_students;
+                $numGroups = ceil($totalStudents / $studentsPerGroup);
+
+                for ($i = 0; $i < $numGroups; $i++) {
+                    Group::create([
+                        'group_code' => $semesterSubject->id . '-' . ($i + 1),
+                        'id_semester_subject' => $semesterSubject->id,
+                        'id_teacher' => null,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('group .index')->with('success', 'Grupos generados automáticamente con éxito.');
     }
 }

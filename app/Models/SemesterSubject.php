@@ -17,11 +17,11 @@ class SemesterSubject extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Subjects::class, 'id_subject', 'id');
+        return $this->belongsTo(Subject::class, 'id_subject', 'id');
     }
 
     public function block()
     {
-        return $this->belongsTo(Blocks::class, 'id_block', 'id');
+        return $this->belongsTo(Block::class, 'id_block', 'id');
     }
 }

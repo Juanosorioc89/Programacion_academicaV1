@@ -36,6 +36,16 @@
                         {{ __('Asignaturas por semestre') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="url('dashboard/projection')" :active="request()->routeIs('projection.*')">
+                        {{ __('Proyeccion Matriculas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="url('dashboard/group')" :active="request()->routeIs('group.*')">
+                        {{ __('Grupos') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

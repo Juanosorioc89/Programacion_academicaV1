@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Areas;
 use App\Models\CurriculumSemester;
 use App\Models\Subject;
+use App\Models\Program;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class SubjectController extends Controller
     {
         $areas = Areas::all();
         $curriculumsSemester = curriculumSemester::all();
-        return view('dashboard.subject.create',['areas'=>$areas, 'curriculumsSemester'=>$curriculumsSemester]);
+        $programs = Program::all();
+        return view('dashboard.subject.create',['areas'=>$areas, 'curriculumsSemester'=>$curriculumsSemester, 'programs'=>$programs]);
     }
 
     /**

@@ -18,7 +18,7 @@
         <form action="{{ route('semesterSubject.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="id_subject" class="form-label">subject</label>
+                <label for="id_subject" class="form-label">Asignatura</label>
                 <select name="id_subject" id="id_subject" class="form-control">
                     @foreach($subject as $subject)
                         <option value="{{ $subject->id }}">{{ $subject->name_subject }}</option>
@@ -34,7 +34,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="students_number" class="form-label">Código Asignatura</label>
+                <label for="students_number" class="form-label">Cantidad Estudiantes</label>
                 <input type="text" name="students_number" id="students_number" class="form-control" value="{{ old('students_number') }}">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Guardar</button>

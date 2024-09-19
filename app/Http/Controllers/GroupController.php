@@ -30,9 +30,9 @@ class GroupController extends Controller
      */
     public function create()
     {
-        $programs = Program::all();
+        $semesterSubjects = SemesterSubject::with('subject')->get();
         $teachers = Teacher::all();
-        return view('dashboard.group.create', compact('programs', 'teachers'));
+        return view('dashboard.group.create', compact('semesterSubjects', 'teachers'));
     }
 
     /**
@@ -40,7 +40,15 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'group_code' => 'required|string|max:100',
+            'id_semester_subject' => 'required|exists:semester_subjects,id',
+            'id_teacher' => 'nullable|exists:teachers,id',
+        ]);
+
+        Group::create($request->all());
+
+        return redirect()->route('group.index')->with('success', 'Grupo creado con éxito.');
     }
 
     /**

@@ -28,8 +28,19 @@
                 @foreach ($groups as $group)
                     <tr>
                         <td>{{ $group->group_code }}</td>
-                        <td>{{ $group->semesterSubject->subject->name }}</td>
+                        
+                        <!-- Verificar si semesterSubject y subject existen -->
+                        <td>
+                            @if ($group->semesterSubject && $group->semesterSubject->subject)
+                                {{ $group->semesterSubject->subject->name_subject }}
+                            @else
+                                No asignado
+                            @endif
+                        </td>
+        
+                        <!-- Verificar si el teacher existe -->
                         <td>{{ $group->teacher ? $group->teacher->name : 'No asignado' }}</td>
+                        
                         <td>
                             <a href="{{ route('group.edit', $group->id) }}" class="btn btn-sm btn-warning">Editar</a>
                             <form action="{{ route('group.destroy', $group->id) }}" method="POST" style="display:inline-block;">

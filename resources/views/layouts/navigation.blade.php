@@ -46,6 +46,16 @@
                         {{ __('Grupos') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="url('dashboard/schedules')" :active="request()->routeIs('schedules.*')">
+                        {{ __('Programacion') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="url('dashboard/reports')" :active="request()->routeIs('reports.*')">
+                        {{ __('Reportes') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Schedule;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -11,7 +12,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $schedules = Schedule::with('group')->paginate(10);
+        return view('dashboard.schedules.index', compact('schedules'));
     }
 
     /**
@@ -19,7 +21,8 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $groups = Group::all();
+        return view('dashboard.schedules.create', compact('groups'));
     }
 
     /**
@@ -27,7 +30,17 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'group_id' => 'required|exists:groups,id',
+            'day_of_week' => 'required|in:Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i',
+            'type' => 'required|in:Encuentro Sincrónico,Encuentro AAA',
+        ]);
+
+        Schedule::create($request->all());
+
+        return redirect()->route('schedules.index')->with('success', 'Horario creado con éxito.');
     }
 
     /**

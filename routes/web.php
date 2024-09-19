@@ -8,6 +8,8 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SemesterSubjectController;
 use App\Http\Controllers\ProjectionController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/load-semesters/{programId}', [ProjectionController::class, 'loadSemesters'])->name('load.semesters');
     Route::resource('dashboard/group', GroupController::class);
     Route::post('dashboard/group/auto-generate', [GroupController::class, 'autoGenerate'])->name('group.autoGenerate');
+    Route::resource('dashboard/schedules', ScheduleController::class);
+    Route::get('dashboard/reports', [ReportController::class, 'index'])->name('reports.index');
 });
 
 require __DIR__.'/auth.php';

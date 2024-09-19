@@ -26,4 +26,8 @@ class Subject extends Model
     {
         return $this->belongsTo(CurriculumSemester::class, 'id_curriculum_semester', 'id');
     }
+    public function semesterSubjects()
+    {
+        return $this->hasMany(SemesterSubject::class, 'id_subject');
+    }
 }
